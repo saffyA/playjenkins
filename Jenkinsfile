@@ -1,7 +1,7 @@
 pipeline {
 
   environment {
-    registry = "saptaktw/endgame"
+    registry = "165.22.220.232:30002/saffya/endgame"
     registryCredential = 'dockerhub'
     dockerImage = ""
   }
@@ -11,7 +11,7 @@ pipeline {
   stages {
     stage('Checkout Source') {
       steps {
-        git 'https://github.com/saptaktakalkar/playjenkins.git'
+        git 'https://github.com/saffyA/playjenkins.git'
       }
     }
 
@@ -26,7 +26,7 @@ pipeline {
     stage('Push Image') {
       steps{
         script {
-          docker.withRegistry( "", registryCredential ) {
+          docker.withRegistry( "http://165.22.220.232:30002", registryCredential ) {
             dockerImage.push()
           }
         }
