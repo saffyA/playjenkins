@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metadata-service-deployment
+  labels:
+    app: metadata-service-app
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: metadata-service-app
+  template:
+    metadata:
+      labels:
+        app: metadata-service-app
+    spec:
+      containers:
+        - image: saffya/metadata-service
+          name: metadata-service-container
+          ports:
+            - containerPort: 8080
+              protocol: TCP
